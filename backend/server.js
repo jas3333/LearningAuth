@@ -7,6 +7,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
+import userRouter from './routes/routes.js';
+app.use('/api/', userRouter);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server listening on port: ${process.env.PORT}`);
