@@ -1,13 +1,16 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
+import md5 from 'md5';
+
 import mongoose from 'mongoose';
-import encrypt from 'mongoose-encryption';
 import User from '../models/userModel.js';
 mongoose.connect(`${process.env.MONGODB}/usersDB`);
 
 const registerUser = async (req, res) => {
-    User.create(req.body);
+    const { username, password } = req.body;
+
+    User.create({ username: username, password: md5(password) });
     console.log(`User: ${req.body} created`);
 };
 const loginUser = async (req, res) => {
