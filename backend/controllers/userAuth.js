@@ -6,8 +6,6 @@ import encrypt from 'mongoose-encryption';
 import User from '../models/userModel.js';
 mongoose.connect(`${process.env.MONGODB}/usersDB`);
 
-const secret = process.env.SECRET;
-
 const registerUser = async (req, res) => {
     User.create(req.body);
     console.log(`User: ${req.body} created`);
