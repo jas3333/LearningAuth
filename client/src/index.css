@@ -6,6 +6,11 @@
 }
 
 :root {
+    /* Colors */
+
+    --neon-red: #b3243a;
+    --dark-red: #330a11;
+
     --bg-main: #292b31;
     --background-dark: #1f2025;
     --fc-light: #d1d3d7;
@@ -63,18 +68,34 @@ li {
     font-size: 2rem;
 }
 
+.icon {
+    font-size: 1.6rem;
+}
+
+.icon-lg {
+    font-size: 4rem;
+}
+
+.strike {
+    text-decoration: line-through;
+    color: var(--color-blend);
+}
+
 /* ╭────────────────────────────╮ */
 /* │           Input            │ */
 /* ╰────────────────────────────╯ */
-input {
-    width: 300px;
-    height: 35px;
+.input-text {
+    height: 28px;
     padding: 5px;
     border-radius: 5px;
     border: none;
 }
-input:focus {
+.input-text:focus {
     outline-style: none;
+}
+
+.input-checkbox {
+    width: 50px;
 }
 
 /* ╭────────────────────────────╮ */
@@ -141,10 +162,9 @@ a:hover {
     font-size: 1.2rem;
     font-weight: 400;
     width: 160px;
-    height: 45px;
     color: var(--fc-light);
     background-color: transparent;
-    border-radius: 10px;
+    border-radius: 5px;
     border: solid 2px var(--fc-light);
     transition: 600ms ease all;
 }
@@ -198,9 +218,20 @@ a:hover {
 /* ╭────────────────────────────╮ */
 /* │ Decorations                │ */
 /* ╰────────────────────────────╯ */
+
+.pointer {
+    cursor: pointer;
+}
+
 .border {
     border: solid 1px var(--fc-light);
-    border-radius: 10px;
+}
+
+.border-dark-red {
+    border: solid 1px var(--dark-red);
+}
+.border-neon-red {
+    border: solid 1px var(--neon-red);
 }
 
 .radius-sm {
@@ -227,6 +258,14 @@ a:hover {
 }
 .shadow {
     box-shadow: var(--shadow);
+}
+
+.shadow-neon-red {
+    box-shadow: 3px 5px 10px #cc1a2a;
+    transition: var(--transition);
+}
+.shadow-neon-red:hover {
+    box-shadow: 2px 2px 20px #cc1a2a;
 }
 .underline-min {
     margin: 0 auto;
@@ -266,6 +305,9 @@ a:hover {
 .pad-lg {
     padding: 20px;
 }
+.pad-vlg {
+    padding: 45px;
+}
 
 /* ╭────────────────────────────╮ */
 /* │         Alignment          │ */
@@ -279,7 +321,7 @@ a:hover {
 }
 
 .auto {
-    margin: auto;
+    margin: 0 auto;
 }
 
 .space {
@@ -384,7 +426,7 @@ a:hover {
 /* ╰────────────────────────────╯ */
 
 .size-sm {
-    width: 200px;
+    width: 300px;
 }
 .size-md {
     width: 450px;
@@ -396,8 +438,35 @@ a:hover {
     width: 100%;
 }
 
+.btn-sm {
+    width: 80px;
+}
+.btn-md {
+    width: 130px;
+}
+
+.btn-h-sm {
+    height: 30px;
+}
+.btn-h-md {
+    height: 40px;
+}
+.btn-h-lg {
+    height: 50px;
+}
+
 .tall {
     height: 75vh;
+}
+
+/* ╭────────────────────────────╮ */
+/* │           Colors           │ */
+/* ╰────────────────────────────╯ */
+.red {
+    color: red;
+}
+.bg-red {
+    background-color: red;
 }
 
 /* ╭────────────────────────────╮ */

@@ -1,25 +1,13 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 const app = express();
 app.use(express.json());
-// import mongoose from 'mongoose';
-// mongoose.connect('mongodb://localhost:27017/recipes');
+app.use(express.urlencoded({ extended: true }));
 
-const PORT = 5000;
+// Routes
 
-// const recipeSchema = new mongoose.Schema({
-//     name: {
-//         type: String,
-//         required: true,
-//     },
-//     ingredients: {
-//         type: [],
-//         required: true,
-//     },
-//     directions: [],
-// });
-//
-// const Recipe = mongoose.model('Recipe', recipeSchema);
-
-app.listen(PORT, () => {
-    console.log(`Server listening on port: ${PORT}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server listening on port: ${process.env.PORT}`);
 });
