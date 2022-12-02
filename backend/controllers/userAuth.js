@@ -1,21 +1,36 @@
 import dotenv from 'dotenv';
 dotenv.config();
-
-import md5 from 'md5';
-
+import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
 import User from '../models/userModel.js';
+
 mongoose.connect(`${process.env.MONGODB}/usersDB`);
+
+const saltRounds = 10;
 
 const registerUser = async (req, res) => {
     const { username, password } = req.body;
 
-    User.create({ username: username, password: md5(password) });
-    console.log(`User: ${req.body} created`);
+    bcrypt.hash(password, saltRounds, (error, hash) => {
+        User.create({ username: username, password: hash });
+    });
+
+    console.log(`User ${username} added to DB`);
 };
 const loginUser = async (req, res) => {
-    res.send('Login User');
-    console.log('Login user');
+    const { username, password } = req.body;
+
+    User.findOne({ username: username }, (error, foundUser) => {
+        if (error) {
+            console.log(error);
+        } else {
+            if (foundUser) {
+                bcrypt.compare(password, foundUser.password, (error, result) => {
+                    result ? console.log('Ok you may enter') : console.log('Nope, get out.');
+                });
+            }
+        }
+    });
 };
 
 const deleteUser = async (req, res) => {
