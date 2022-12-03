@@ -1,6 +1,8 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import bcrypt from 'bcrypt';
+import { StatusCodes } from 'http-status-codes';
+
 import mongoose from 'mongoose';
 import User from '../models/userModel.js';
 
@@ -9,13 +11,12 @@ mongoose.connect(`${process.env.MONGODB}/usersDB`);
 const saltRounds = 10;
 
 const registerUser = async (req, res) => {
-    const { username, password } = req.body;
+    const user = await User.create(req.body);
+    res.status(StatusCodes.OK).json({ user });
 
-    bcrypt.hash(password, saltRounds, (error, hash) => {
-        User.create({ username: username, password: hash });
-    });
-
-    console.log(`User ${username} added to DB`);
+    // bcrypt.hash(password, saltRounds, (error, hash) => {
+    //     User.create({ username: username, password: hash });
+    // });
 };
 const loginUser = async (req, res) => {
     const { username, password } = req.body;

@@ -1,16 +1,8 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
 import mongoose from 'mongoose';
-// import encrypt from 'mongoose-encryption';
-
-const secret = process.env.SECRET;
 
 const userSchema = new mongoose.Schema({
-    username: String,
-    password: String,
+    username: { type: String, required: [true, 'Must provide a name'], unique: true },
+    password: { type: String, required: [true, 'Must provide a password'], minLength: 8 },
 });
-
-// userSchema.plugin(encrypt, { secret: secret, encryptedFields: ['password'] });
 
 export default mongoose.model('User', userSchema);
