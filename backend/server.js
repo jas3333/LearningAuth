@@ -9,7 +9,7 @@ import errorHandlerMiddleware from './middleware/error-handler.js';
 import notFoundMiddleware from './middleware/not-found.js';
 
 const testing = (req, res, next) => {
-    console.log('Yo yo, i"m a test lolers');
+    console.log('test test');
     next();
 };
 
