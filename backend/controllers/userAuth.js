@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import bcrypt from 'bcrypt';
 import { StatusCodes } from 'http-status-codes';
 
 import mongoose from 'mongoose';
@@ -8,30 +7,16 @@ import User from '../models/userModel.js';
 
 mongoose.connect(`${process.env.MONGODB}/usersDB`);
 
-const saltRounds = 10;
-
-const registerUser = async (req, res) => {
-    const user = await User.create(req.body);
-    res.status(StatusCodes.OK).json({ user });
-
-    // bcrypt.hash(password, saltRounds, (error, hash) => {
-    //     User.create({ username: username, password: hash });
-    // });
+const registerUser = async (req, res, next) => {
+    try {
+        const user = await User.create(req.body);
+        res.status(201).json({ user });
+    } catch (error) {
+        next(error);
+    }
 };
 const loginUser = async (req, res) => {
-    const { username, password } = req.body;
-
-    User.findOne({ username: username }, (error, foundUser) => {
-        if (error) {
-            console.log(error);
-        } else {
-            if (foundUser) {
-                bcrypt.compare(password, foundUser.password, (error, result) => {
-                    result ? console.log('Ok you may enter') : console.log('Nope, get out.');
-                });
-            }
-        }
-    });
+    res.send('nice try');
 };
 
 const deleteUser = async (req, res) => {
